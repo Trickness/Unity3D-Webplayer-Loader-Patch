@@ -1,0 +1,62 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+.vscode/
+.deps/
+
+autom4te.cache/
+aclocal.m4
+ar-lib
+compile
+depcomp
+install-sh
+missing
+Makefile.in
+Makefile
+config.h
+config.log
+config.status
+stamp-h1
+.dirstamp
+DebugConsole
+
+*.db
+.vs
+*.user
+WinBuild
+*~
+configure
+config.h.in
+
+x64
+Release
