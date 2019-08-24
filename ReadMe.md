@@ -8,7 +8,7 @@
 
 Unity3D Webplayer Installer 中包含的并非程序的完整打包，而只是一个下载器（Loader），需要在线下载两个组件（Player & Mono Editor）后，Webplayer插件才能正常使用。
 
-解包和重新打包安装器个人觉得不太明智，特别是对于部分商业公司来说。
+解包并重新打包安装器个人觉得不太明智，特别是对于部分商业公司来说。
 
 ## 如何使用？
 
@@ -21,7 +21,7 @@ Unity3D Webplayer Installer 中包含的并非程序的完整打包，而只是�
 
 ### step 2. 本地安装 Unity3D Webplayer 客户端：
 
-WebplayerFill.exe
+UnityWebplayerFull.exe
 
 > [百度网盘](https://pan.baidu.com/s/1KOsm3fs4dxrjknyf-h2ncQ)    
 > 提取码：a9pv
