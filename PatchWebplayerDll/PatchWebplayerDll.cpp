@@ -5,6 +5,9 @@
 #include <iostream>
 #include <fstream>
 #include <Windows.h>
+#include <io.h>
+#include <cstdio>
+#include <cstdlib>
 
 using namespace std;
 
@@ -45,10 +48,11 @@ int replace_str(char* Buffer, const char* Target, const char* replaced_with, siz
 }
 
 int main(int argc, char* argv[]) {
+    cout << endl;
     string dll_file_path = "";
     string replaced_with = "";
     if (argc == 2 && strnicmp(argv[1],"--replaced-with=",strlen("--replaced-with=")) == 0) {    // default dll path
-        replaced_with = string(argv[1]).substr(strlen("--replaced-with=")-1);
+        replaced_with = string(argv[1]).substr(strlen("--replaced-with="));
         char* Buffer = nullptr;
         size_t bytes;
         _dupenv_s(&Buffer, &bytes, "HOMEDRIVE");
@@ -67,14 +71,21 @@ int main(int argc, char* argv[]) {
         free(Buffer);
         dll_file_path.append("\\AppData\\LocalLow\\Unity\\WebPlayer\\loader\\npUnity3D32.dll");
     }
-    else if (argc == 3 && strnicmp(argv[1], "--replaced-with=", strlen("--replaced-with=")) == 0) {   // specified dll path;
+    else if (argc == 3 && strnicmp(argv[2], "--replaced-with=", strlen("--replaced-with=")) == 0) {   // specified dll path;
         dll_file_path.append(argv[1]);
-        replaced_with = string(argv[2]).substr(strlen("--replaced-with=")-1);
+        replaced_with = string(argv[2]).substr(strlen("--replaced-with="));
     }
     else {
         print_usage(argv);
         exit(0);
     }
+
+    if (!_access((dll_file_path + string("_BACKUP")).c_str(),0) != -1) {
+        CopyFileA((dll_file_path + string("_BACKUP")).c_str(), dll_file_path.c_str(), FALSE);
+        DEBUG_MSG("Backup file found --> Using backup file overwriting..." << endl);
+
+    }
+
     DEBUG_MSG("PATCH FILE --> " << dll_file_path);
     DEBUG_MSG("PATCH WITH --> " << replaced_with << endl << endl);
     DEBUG_MSG("Read file  --> " << dll_file_path);
@@ -105,8 +116,8 @@ int main(int argc, char* argv[]) {
     }
     DEBUG_MSG("Patching file " << dll_file_path);
     int replaced_count = 0;
-    replaced_count += replace_str(dll_content.get(), "autoupdate-revision.unity3d.com",replaced_with.c_str(), file_size);     // REPLACE HERE!
-    replaced_count += replace_str(dll_content.get(), "webplayer.unity3d.com", replaced_with.c_str(), file_size);              // REPLACE HERE!
+    replaced_count += replace_str(dll_content.get(), "autoupdate-revision.unity3d.com",replaced_with.c_str(), file_size);
+    replaced_count += replace_str(dll_content.get(), "webplayer.unity3d.com", replaced_with.c_str(), file_size);
     replaced_count += replace_str(dll_content.get(), "ssl-", "", file_size);
     if (replaced_count) {
         string backup_file_path = dll_file_path + ("_BACKUP");
