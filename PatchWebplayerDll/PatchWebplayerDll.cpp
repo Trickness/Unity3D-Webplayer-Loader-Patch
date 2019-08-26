@@ -47,7 +47,7 @@ int replace_str(char* Buffer, const char* Target, const char* replaced_with, siz
 int main(int argc, char* argv[]) {
     string dll_file_path = "";
     string replaced_with = "";
-    if (argc == 2 && strnicmp(argv[1],"--replaced-with=",strlen("--replaced-with="))) {    // default dll path
+    if (argc == 2 && strnicmp(argv[1],"--replaced-with=",strlen("--replaced-with=")) == 0) {    // default dll path
         replaced_with = string(argv[1]).substr(strlen("--replaced-with=")-1);
         char* Buffer = nullptr;
         size_t bytes;
@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
         free(Buffer);
         dll_file_path.append("\\AppData\\LocalLow\\Unity\\WebPlayer\\loader\\npUnity3D32.dll");
     }
-    else if (argc == 3 && strnicmp(argv[2], "--replaced-with=", strlen("--replaced-with="))) {   // specified dll path;
+    else if (argc == 3 && strnicmp(argv[1], "--replaced-with=", strlen("--replaced-with=")) == 0) {   // specified dll path;
         dll_file_path.append(argv[1]);
         replaced_with = string(argv[2]).substr(strlen("--replaced-with=")-1);
     }
