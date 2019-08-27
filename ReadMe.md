@@ -19,7 +19,7 @@ Unity3D Webplayer Installer 中包含的并非程序的完整打包，而只是�
 > 提取码：7ve2
 2. 将数据放在你的更新服务器的http、https服务的公开目录下。例如，若放在 www.example.com 网的 /root 子目录下，则应保证 www.example.com/root/revisions.plist 是可以访问的，同时不建议子目录过长。
 
-注意：**域名与子目录共计长度不能超过 20 个字符**。
+注意：**域名与子目录共计长度不能超过 20 个字符，否则程序会崩溃，所以强烈建议就放在根目录下！**。
 
 ### step 2. 本地安装 Unity3D Webplayer 客户端：
 
